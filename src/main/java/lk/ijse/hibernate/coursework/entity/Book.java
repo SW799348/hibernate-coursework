@@ -1,7 +1,7 @@
 package lk.ijse.hibernate.coursework.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+
 @Entity
 @Table(name = "books")
 

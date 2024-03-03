@@ -1,9 +1,6 @@
 package lk.ijse.hibernate.coursework.util;
 
-import lk.ijse.hibernate.coursework.entity.Book;
-import lk.ijse.hibernate.coursework.entity.Branch;
-import lk.ijse.hibernate.coursework.entity.Transaction;
-import lk.ijse.hibernate.coursework.entity.User;
+import lk.ijse.hibernate.coursework.entity.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,6 +18,7 @@ public class SessionFactoryConfig {
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Book.class)
                 .addAnnotatedClass(Branch.class)
+                .addAnnotatedClass(Admin.class)
                 .buildSessionFactory();
     }
 
