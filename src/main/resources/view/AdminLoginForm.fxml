@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.hibernate.coursework.controller.AdminLoginFormController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.coursework.controller.AdminLoginFormController">
+   <children>
+      <ImageView fitHeight="368.0" fitWidth="348.0" layoutX="333.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/adminlogin.png" />
+         </image>
+      </ImageView>
+      <Text fill="#4a5d98" layoutX="38.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BookWorm" wrappingWidth="204.88024139404297">
+         <font>
+            <Font name="Arial Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text fill="#4a5d98" layoutX="165.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Online Library" wrappingWidth="174.8802261352539">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtUsername" layoutX="38.0" layoutY="162.0" prefHeight="37.0" prefWidth="216.0" promptText=" Username" style="-fx-background-color: #F5DA93; -fx-text-fill: black; -fx-background-radius: 5;" />
+      <TextField fx:id="txtPassword" layoutX="38.0" layoutY="210.0" prefHeight="37.0" prefWidth="216.0" promptText="Password" style="-fx-background-color: #F5DA93; -fx-text-fill: black; -fx-background-radius: 5;" />
+      <JFXButton layoutX="38.0" layoutY="260.0" onAction="#btnLoginOnAction" prefHeight="37.0" prefWidth="216.0" style="-fx-background-color: #F96966; -fx-background-radius: 5;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <Text fill="#4a5d98" layoutX="42.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to" wrappingWidth="174.8802261352539">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Text>
+   </children>
 </AnchorPane>
