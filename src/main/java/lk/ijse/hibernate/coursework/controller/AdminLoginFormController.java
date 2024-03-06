@@ -1,4 +1,4 @@
 package lk.ijse.hibernate.coursework.controller;
 
-public class LoginFormController {
+public class AdminLoginFormController {
 }
