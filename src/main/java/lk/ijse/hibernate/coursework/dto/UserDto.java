@@ -61,12 +61,9 @@ public class UserDto implements Serializable {
                 ", password='" + password + '\'' +
                 '}';
     }
-    public User toEntity(){
-        User userDto = new User();
-        userDto.setUserID(this.userID);
-        userDto.setName(this.name);
-        userDto.setEmail(this.email);
-        userDto.setPassword(this.password);
-        return userDto;
-    }
+//    public User toEntity(){
+//
+//        User userDto = new User();
+//        userDto.
+//    }
 }

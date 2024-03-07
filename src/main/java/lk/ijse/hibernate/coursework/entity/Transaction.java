@@ -24,15 +24,20 @@ public class Transaction {
     @Temporal(TemporalType.TIMESTAMP)
     private Date returnDate;
 
+    private Date DueDate;
+    private int qty;
+
     public Transaction() {
     }
 
-    public Transaction(Long transactionID, User user, Book book, Date borrowDate, Date returnDate) {
+    public Transaction(Long transactionID, User user, Book book, Date borrowDate, Date returnDate, Date dueDate, int qty) {
         this.transactionID = transactionID;
         this.user = user;
         this.book = book;
         this.borrowDate = borrowDate;
         this.returnDate = returnDate;
+        DueDate = dueDate;
+        this.qty = qty;
     }
 
     public Long getTransactionID() {
@@ -73,5 +78,34 @@ public class Transaction {
 
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public Date getDueDate() {
+        return DueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        DueDate = dueDate;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "transactionID=" + transactionID +
+                ", user=" + user +
+                ", book=" + book +
+                ", borrowDate=" + borrowDate +
+                ", returnDate=" + returnDate +
+                ", DueDate=" + DueDate +
+                ", qty=" + qty +
+                '}';
     }
 }
