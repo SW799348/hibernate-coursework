@@ -13,14 +13,14 @@ public class AdminDto implements Serializable {
     private Long adminId;
     private String username;
     private String password;
-    private List<Book> bookList;
-    private List<User> userList;
-    private List<Branch> branchList;
+    private List<BookDto> bookList;
+    private List<UserDto> userList;
+    private List<BranchDto> branchList;
 
     public AdminDto() {
     }
 
-    public AdminDto(Long adminId, String username, String password, List<Book> bookList, List<User> userList, List<Branch> branchList) {
+    public AdminDto(Long adminId, String username, String password, List<BookDto> bookList, List<UserDto> userList, List<BranchDto> branchList) {
         this.adminId = adminId;
         this.username = username;
         this.password = password;
@@ -53,27 +53,27 @@ public class AdminDto implements Serializable {
         this.password = password;
     }
 
-    public List<Book> getBookList() {
+    public List<BookDto> getBookList() {
         return bookList;
     }
 
-    public void setBookList(List<Book> bookList) {
+    public void setBookList(List<BookDto> bookList) {
         this.bookList = bookList;
     }
 
-    public List<User> getUserList() {
+    public List<UserDto> getUserList() {
         return userList;
     }
 
-    public void setUserList(List<User> userList) {
+    public void setUserList(List<UserDto> userList) {
         this.userList = userList;
     }
 
-    public List<Branch> getBranchList() {
+    public List<BranchDto> getBranchList() {
         return branchList;
     }
 
-    public void setBranchList(List<Branch> branchList) {
+    public void setBranchList(List<BranchDto> branchList) {
         this.branchList = branchList;
     }
 

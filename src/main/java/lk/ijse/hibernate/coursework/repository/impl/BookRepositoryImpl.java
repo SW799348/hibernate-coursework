@@ -9,48 +9,29 @@ import java.util.List;
 
 public class BookRepositoryImpl implements BookRepository {
 
-    private Session session;
 
-    private static BookRepositoryImpl bookRepositoryImpl;
-
-    private BookRepositoryImpl() {
-    }
-
-    public static BookRepositoryImpl getInstance(){
-        return null==bookRepositoryImpl? bookRepositoryImpl=new BookRepositoryImpl() : bookRepositoryImpl;
-    }
     @Override
-    public void setSession(Session session) {
-       this.session=session;
-    }
-    @Override
-    public Long save(Book book) {
-        return (Long) session.save(book);
+    public Long save(Book object) {
+        return null;
     }
 
     @Override
-    public void update(Book book) {
-        session.update(book);
+    public void update(Book object) {
+
+    }
+
+    @Override
+    public Book get(Long aLong) {
+        return null;
+    }
+
+    @Override
+    public void delete(Book object) {
+
     }
 
     @Override
-    public Book get(Long id) {
-        return session.get(Book.class,id);
-    }
+    public void setSession(Session session) {
 
-    @Override
-    public void delete(Book book) {
-        session.delete(book);
-    }
-
-
-
-    @Override
-    public List<Book> getAllBooks() {
-        String sql="SELECT B FROM Book AS B ";
-        Query query = session.createQuery(sql);
-        List list = query.list();
-        session.close();
-        return list;
     }
 }
