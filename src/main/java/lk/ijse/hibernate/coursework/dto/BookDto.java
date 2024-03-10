@@ -6,6 +6,7 @@ import lk.ijse.hibernate.coursework.entity.Branch;
 import lk.ijse.hibernate.coursework.entity.Transaction;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookDto implements Serializable {
@@ -121,5 +122,25 @@ public class BookDto implements Serializable {
                 ", transactionList=" + transactionList +
                 ", branch=" + branch +
                 '}';
+    }
+
+    public Book toEntity(){
+        Book bookEntity = new Book();
+        bookEntity.setBookID(this.bookID);
+        bookEntity.setTitle(this.title);
+        bookEntity.setAuthor(this.author);
+        bookEntity.setGenre(this.genre);
+        bookEntity.setAvailabilityStatus(this.availabilityStatus);
+        bookEntity.setQty(this.qty);
+        bookEntity.setAdmin(this.admin);
+        bookEntity.setBranch(this.branch);
+
+        List<Transaction> transactions = new ArrayList<>();
+        for (TransactionDto transactionDto : this.transactionList) {
+            transactions.add(transactionDto.toEntity());
+        }
+        bookEntity.setTransactionList(transactions);
+        return bookEntity;
+
     }
 }

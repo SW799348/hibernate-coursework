@@ -5,6 +5,7 @@ import lk.ijse.hibernate.coursework.repository.inter.BookRepository;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookRepositoryImpl implements BookRepository {
@@ -28,6 +29,11 @@ public class BookRepositoryImpl implements BookRepository {
     @Override
     public void delete(Book object) {
 
+    }
+
+    @Override
+    public ArrayList<Book> getAll() {
+        return null;
     }
 
     @Override

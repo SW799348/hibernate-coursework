@@ -5,6 +5,7 @@ import lk.ijse.hibernate.coursework.entity.Book;
 import lk.ijse.hibernate.coursework.entity.Branch;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BranchDto implements Serializable {
@@ -73,5 +74,20 @@ public class BranchDto implements Serializable {
                 ", admin=" + admin +
                 ", bookList=" + bookList +
                 '}';
+    }
+
+    public Branch toEntity(){
+        Branch branchDto = new Branch();
+        branchDto.setBranchID(this.branchID);
+        branchDto.setBranchName(this.branchName);
+        branchDto.setLocation(this.location);
+        branchDto.setAdmin(this.admin);
+
+        List<Book> books=new ArrayList<>();
+        for(BookDto bookDto : this.bookList){
+            books.add(bookDto.toEntity());
+        }
+        branchDto.setBookList(books);
+        return branchDto;
     }
 }

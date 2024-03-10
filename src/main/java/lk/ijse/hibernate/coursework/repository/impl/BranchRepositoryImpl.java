@@ -4,6 +4,8 @@ import lk.ijse.hibernate.coursework.entity.Branch;
 import lk.ijse.hibernate.coursework.repository.inter.BranchRepository;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
+
 public class BranchRepositoryImpl implements BranchRepository {
     @Override
     public Long save(Branch object) {
@@ -23,6 +25,11 @@ public class BranchRepositoryImpl implements BranchRepository {
     @Override
     public void delete(Branch object) {
 
+    }
+
+    @Override
+    public ArrayList<Branch> getAll() {
+        return null;
     }
 
     @Override

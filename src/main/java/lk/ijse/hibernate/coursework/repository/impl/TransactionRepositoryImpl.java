@@ -4,6 +4,8 @@ import lk.ijse.hibernate.coursework.entity.Transaction;
 import lk.ijse.hibernate.coursework.repository.inter.TransactionRepository;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
+
 public class TransactionRepositoryImpl implements TransactionRepository {
     @Override
     public Long save(Transaction object) {
@@ -23,6 +25,11 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     @Override
     public void delete(Transaction object) {
 
+    }
+
+    @Override
+    public ArrayList<Transaction> getAll() {
+        return null;
     }
 
     @Override

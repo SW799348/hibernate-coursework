@@ -4,6 +4,8 @@ import lk.ijse.hibernate.coursework.entity.User;
 import lk.ijse.hibernate.coursework.repository.inter.UserRepository;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
+
 public class UserRepositoryImpl implements UserRepository {
     @Override
     public Long save(User object) {
@@ -23,6 +25,11 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void delete(User object) {
 
+    }
+
+    @Override
+    public ArrayList<User> getAll() {
+        return null;
     }
 
     @Override

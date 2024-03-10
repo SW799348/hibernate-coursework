@@ -5,6 +5,7 @@ import lk.ijse.hibernate.coursework.entity.Transaction;
 import lk.ijse.hibernate.coursework.entity.User;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDto implements Serializable {
@@ -88,5 +89,17 @@ public class UserDto implements Serializable {
                 '}';
     }
 
+public User toEntity(){
+    User userEntity = new User();
+    userEntity.setUserID(this.userID);
+    userEntity.setName(this.name);
+    userEntity.setEmail(this.email);
+    userEntity.setTransactionList(this.transactionList);
 
+    List<Transaction> transactions=new ArrayList<>();
+    for (TransactionDto transactionDto: this.transactionList){
+
+    }
+
+}
 }

@@ -4,6 +4,8 @@ import lk.ijse.hibernate.coursework.entity.Admin;
 import lk.ijse.hibernate.coursework.repository.inter.AdminRepository;
 import org.hibernate.Session;
 
+import java.util.ArrayList;
+
 public class AdminRepositoryImpl implements AdminRepository {
     @Override
     public Long save(Admin object) {
@@ -23,6 +25,11 @@ public class AdminRepositoryImpl implements AdminRepository {
     @Override
     public void delete(Admin object) {
 
+    }
+
+    @Override
+    public ArrayList<Admin> getAll() {
+        return null;
     }
 
     @Override
