@@ -7,6 +7,10 @@ import org.hibernate.Session;
 import java.util.ArrayList;
 
 public class UserRepositoryImpl implements UserRepository {
+
+    private Session session;
+
+    private static UserRepositoryImpl userRepository;
     @Override
     public Long save(User object) {
         return null;
