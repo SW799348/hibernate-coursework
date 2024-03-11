@@ -5,8 +5,14 @@ import lk.ijse.hibernate.coursework.repository.inter.TransactionRepository;
 import org.hibernate.Session;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionRepositoryImpl implements TransactionRepository {
+
+    private Session session;
+    private static TransactionRepositoryImpl transactionRepositoryImpl;
+
+    private TransactionRepositoryImpl(){}
     @Override
     public Long save(Transaction object) {
         return null;
@@ -28,7 +34,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
-    public ArrayList<Transaction> getAll() {
+    public List<Transaction> getAll() {
         return null;
     }
 

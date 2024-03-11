@@ -1,5 +1,6 @@
 package lk.ijse.hibernate.coursework.entity;
 
+import lk.ijse.hibernate.coursework.dto.TransactionDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,18 @@ public class Book {
     private String author;
     private String genre;
     private boolean availabilityStatus;
+
+    private int qty;
+
+
+    @ManyToOne
+    private Admin admin;
+
+    @ManyToOne
+    private Branch branch;
+
+    @OneToMany(mappedBy = "book")
+    private List<Transaction> transactions;
 
 
 }

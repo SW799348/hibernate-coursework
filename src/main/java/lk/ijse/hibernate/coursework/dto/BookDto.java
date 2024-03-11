@@ -8,13 +8,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookDto implements Serializable {
+
+public class BookDto{
 
     private Long bookID;
     private String title;
@@ -22,7 +24,6 @@ public class BookDto implements Serializable {
     private String genre;
     private boolean availabilityStatus;
     private int qty;
-
     private Admin admin;
     private List<TransactionDto> transactionList;
     private Branch branch;
@@ -39,11 +40,13 @@ public class BookDto implements Serializable {
         bookEntity.setAdmin(this.admin);
         bookEntity.setBranch(this.branch);
 
+
+
         List<Transaction> transactions = new ArrayList<>();
         for (TransactionDto transactionDto : this.transactionList) {
             transactions.add(transactionDto.toEntity());
         }
-        bookEntity.setTransactionList(transactions);
+        bookEntity.setTransactions(transactions);
         return bookEntity;
 
     }

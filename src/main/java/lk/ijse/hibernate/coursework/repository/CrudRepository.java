@@ -1,6 +1,7 @@
 package lk.ijse.hibernate.coursework.repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface CrudRepository<T,ID> extends SuperRepository {
 
@@ -12,5 +13,5 @@ public interface CrudRepository<T,ID> extends SuperRepository {
 
     void delete(T object);
 
-    ArrayList<T> getAll();
+    List<T> getAll();
 }

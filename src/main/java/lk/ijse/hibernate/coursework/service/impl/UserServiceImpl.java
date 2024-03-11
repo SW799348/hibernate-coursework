@@ -1,6 +1,7 @@
 package lk.ijse.hibernate.coursework.service.impl;
 
 import lk.ijse.hibernate.coursework.dto.UserDto;
+import lk.ijse.hibernate.coursework.entity.Book;
 import lk.ijse.hibernate.coursework.repository.impl.UserRepositoryImpl;
 import lk.ijse.hibernate.coursework.repository.inter.UserRepository;
 import lk.ijse.hibernate.coursework.service.inter.UserService;
@@ -40,6 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean deleteUser(UserDto userDto) {
+
         return false;
     }
 
