@@ -1,10 +1,13 @@
 package lk.ijse.hibernate.coursework.entity;
 
+import lk.ijse.hibernate.coursework.dto.BookDto;
+import lk.ijse.hibernate.coursework.dto.BranchDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,4 +34,19 @@ public class Branch {
     private List<Book> bookList;
 
 
+    public BranchDto toDto(){
+        BranchDto branchDto = new BranchDto();
+        branchDto.setBranchID(this.branchID);
+        branchDto.setBranchName(this.branchName);
+        branchDto.setLocation(this.location);
+        branchDto.setAdmin(this.admin);
+
+        List<BookDto> bookDtoList=new ArrayList<>();
+        for (Book book : this.bookList){
+            bookDtoList.add(book.toDto());
+        }
+        branchDto.setBookList(bookDtoList);
+
+        return branchDto;
+    }
 }

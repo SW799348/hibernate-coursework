@@ -1,5 +1,6 @@
 package lk.ijse.hibernate.coursework.entity;
 
+import lk.ijse.hibernate.coursework.dto.BookDto;
 import lk.ijse.hibernate.coursework.dto.TransactionDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,4 +41,23 @@ public class Book {
     private List<Transaction> transactions;
 
 
+    public BookDto toDto(){
+        BookDto bookDto = new BookDto();
+        bookDto.setBookID(this.bookID);
+        bookDto.setTitle(this.title);
+        bookDto.setAuthor(this.author);
+        bookDto.setGenre(this.genre);
+        bookDto.setAvailabilityStatus(this.availabilityStatus);
+        bookDto.setQty(this.qty);
+        bookDto.setAdmin(this.admin);
+        bookDto.setBranch(this.branch);
+
+        List<TransactionDto> transactionDtos=new ArrayList<>();
+        for(Transaction transaction : this.transactions){
+            transactionDtos.add(transaction.toDto());
+        }
+        bookDto.setTransactionList(transactionDtos);
+
+        return bookDto;
+    }
 }

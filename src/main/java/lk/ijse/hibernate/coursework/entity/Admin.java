@@ -2,6 +2,8 @@ package lk.ijse.hibernate.coursework.entity;
 
 import lk.ijse.hibernate.coursework.dto.AdminDto;
 import lk.ijse.hibernate.coursework.dto.BookDto;
+import lk.ijse.hibernate.coursework.dto.BranchDto;
+import lk.ijse.hibernate.coursework.dto.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,6 +38,7 @@ public class Admin {
         private List<Branch> branchList;
 
         public AdminDto toDto(){
+
                 AdminDto adminDto = new AdminDto();
                 adminDto.setAdminId(this.adminId);
                 adminDto.setUsername(this.username);
@@ -44,11 +47,23 @@ public class Admin {
 
                 List<BookDto> bookDtoList=new ArrayList<>();
                 for (Book book:this.bookList){
-                        bookDtoList.add(book.toDto);
+                        bookDtoList.add(book.toDto());
                 }
                 adminDto.setBookList(bookDtoList);
 
-                List<>
+                List<UserDto> userDtoList=new ArrayList<>();
+                for (User user : this.userList){
+                        userDtoList.add(user.toDto());
+                }
+                adminDto.setUserList(userDtoList);
+
+                List<BranchDto> branchDtoList=new ArrayList<>();
+                for (Branch branch :this.branchList){
+                        branchDtoList.add(branch.toDto());
+                }
+                adminDto.setBranchList(branchDtoList);
+
+                return adminDto;
         }
 
 }

@@ -1,5 +1,6 @@
 package lk.ijse.hibernate.coursework.entity;
 
+import lk.ijse.hibernate.coursework.dto.TransactionDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,4 +37,17 @@ public class Transaction {
     private int qty;
 
 
+    public TransactionDto toDto(){
+        TransactionDto transactionDto = new TransactionDto();
+
+        transactionDto.setTransactionID(this.transactionID);
+        transactionDto.setUser(this.user);
+        transactionDto.setBook(this.book);
+        transactionDto.setBorrowDate(this.borrowDate);
+        transactionDto.setReturnDate(this.returnDate);
+        transactionDto.setDueDate(this.DueDate);
+        transactionDto.setQty(this.qty);
+
+        return transactionDto;
+    }
 }
