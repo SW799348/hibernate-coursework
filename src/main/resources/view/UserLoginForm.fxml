@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.coursework.controller.UserLoginFormController">
+<AnchorPane fx:id="loginAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.coursework.controller.UserLoginFormController">
    <children>
       <ImageView fitHeight="331.0" fitWidth="404.0" layoutX="286.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -25,8 +25,7 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="txtUsername" layoutX="28.0" layoutY="141.0" prefHeight="37.0" prefWidth="216.0" promptText=" Username" style="-fx-background-color: #CDECF1; -fx-text-fill: black; -fx-background-radius: 5;" />
-      <TextField fx:id="txtEmail" layoutX="28.0" layoutY="186.0" prefHeight="37.0" prefWidth="216.0" promptText=" Email" style="-fx-background-color: #CDECF1; -fx-text-fill: black; -fx-background-radius: 5;" />
+      <TextField fx:id="txtUsername" layoutX="28.0" layoutY="187.0" prefHeight="37.0" prefWidth="216.0" promptText=" Username" style="-fx-background-color: #CDECF1; -fx-text-fill: black; -fx-background-radius: 5;" />
       <TextField fx:id="txtPassword" layoutX="28.0" layoutY="232.0" prefHeight="37.0" prefWidth="216.0" promptText="Password" style="-fx-background-color: #CDECF1; -fx-text-fill: black; -fx-background-radius: 5;" />
       <JFXButton layoutX="28.0" layoutY="292.0" onAction="#btnLoginOnAction" prefHeight="37.0" prefWidth="216.0" style="-fx-background-color: #ff9b55; -fx-background-radius: 5;" text="Login" textFill="WHITE">
          <font>

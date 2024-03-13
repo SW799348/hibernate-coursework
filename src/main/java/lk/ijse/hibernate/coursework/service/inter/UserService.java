@@ -14,4 +14,5 @@ public interface UserService  extends SuperService {
     List<UserDto> getAllUsers();
 
 
+    boolean authenticateUser(String username, String password);
 }

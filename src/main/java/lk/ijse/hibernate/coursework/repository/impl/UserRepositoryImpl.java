@@ -14,6 +14,10 @@ public class UserRepositoryImpl implements UserRepository {
     private static UserRepositoryImpl userRepositoryImpl;
 
     private UserRepositoryImpl(){}
+
+    public static UserRepositoryImpl getInstance(){
+        return null==userRepositoryImpl?userRepositoryImpl=new UserRepositoryImpl():userRepositoryImpl;
+    }
     @Override
     public Long save(User user) {
         return (Long) session.save(user);
@@ -47,4 +51,7 @@ public class UserRepositoryImpl implements UserRepository {
     public void setSession(Session session) {
            this.session=session;
     }
+
+
+
 }
