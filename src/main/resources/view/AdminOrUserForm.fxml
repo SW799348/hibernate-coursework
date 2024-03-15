@@ -26,12 +26,12 @@
       </JFXButton>
       <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="87.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assests/icons8-admin-32.png" />
+            <Image url="@../../../../../../hibernate-courseworkkkkkkk/src/main/resources/assests/icons8-admin-32.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="38.0" fitWidth="46.0" layoutX="302.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assests/icons8-user-32.png" />
+            <Image url="@../../../../../../hibernate-courseworkkkkkkk/src/main/resources/assests/icons8-user-32.png" />
          </image>
       </ImageView>
    </children>

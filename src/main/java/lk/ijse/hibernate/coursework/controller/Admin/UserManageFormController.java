@@ -1,42 +1,29 @@
-package lk.ijse.hibernate.coursework.controller;
+package lk.ijse.hibernate.coursework.controller.Admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
-public class BookFormController {
+public class UserManageFormController {
 
     @FXML
-    private ComboBox<?> cmbGenre;
+    private TableColumn<?, ?> colAdminId;
 
     @FXML
-    private TableColumn<?, ?> colAuthor;
-
-    @FXML
-    private TableColumn<?, ?> colAvailabilty;
-
-    @FXML
-    private TableColumn<?, ?> colBookID;
-
-    @FXML
-    private TableColumn<?, ?> colGenre;
+    private TableColumn<?, ?> colMail;
 
     @FXML
     private TableColumn<?, ?> colName;
 
     @FXML
-    private TableColumn<?, ?> colTittle;
+    private TableColumn<?, ?> colUserId;
 
     @FXML
-    private TextField txtAuthor;
+    private TextField txtAdminID;
 
     @FXML
-    private TextField txtAvailability;
-
-    @FXML
-    private TextField txtBookId;
+    private TextField txtMail;
 
     @FXML
     private TextField txtName;
@@ -45,9 +32,7 @@ public class BookFormController {
     private TextField txtSearch;
 
     @FXML
-    private TextField txtTittle;
-
-
+    private TextField txtUserId;
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {

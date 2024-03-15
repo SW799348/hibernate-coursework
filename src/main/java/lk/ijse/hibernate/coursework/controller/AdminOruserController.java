@@ -18,24 +18,25 @@ public class AdminOruserController {
     @FXML
     void btnAdminOnAction(ActionEvent event) throws IOException {
 
-        Parent loginAnchorPane = FXMLLoader.load(this.getClass().getResource("/view/AdminLoginForm.fxml"));
+        Parent loginAnchorPane = FXMLLoader.load(this.getClass().getResource("/view/Admin/adminLoginForm.fxml"));
 
         Scene scene = new Scene(loginAnchorPane);
         Stage stage = (Stage) this.loginAnchorPane.getScene().getWindow();
 
-        stage.setTitle("Admin");
+        stage.setTitle("Login");
         stage.setScene(scene);
         stage.centerOnScreen();
     }
 
     @FXML
     void btnUserOnAction(ActionEvent event) throws IOException {
-        Parent loginAnchorPane = FXMLLoader.load(this.getClass().getResource("/view/UserLoginForm.fxml"));
+
+        Parent loginAnchorPane = FXMLLoader.load(this.getClass().getResource("/view/User/userLoginForm.fxml"));
 
         Scene scene = new Scene(loginAnchorPane);
         Stage stage = (Stage) this.loginAnchorPane.getScene().getWindow();
 
-        stage.setTitle("User");
+        stage.setTitle("Login");
         stage.setScene(scene);
         stage.centerOnScreen();
     }

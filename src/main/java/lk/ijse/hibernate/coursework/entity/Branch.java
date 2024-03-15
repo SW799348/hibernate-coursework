@@ -39,13 +39,13 @@ public class Branch {
         branchDto.setBranchID(this.branchID);
         branchDto.setBranchName(this.branchName);
         branchDto.setLocation(this.location);
-        branchDto.setAdmin(this.admin);
+//        branchDto.setAdmin(this.admin);
 
-        List<BookDto> bookDtoList=new ArrayList<>();
-        for (Book book : this.bookList){
-            bookDtoList.add(book.toDto());
-        }
-        branchDto.setBookList(bookDtoList);
+//        List<BookDto> bookDtoList=new ArrayList<>();
+//        for (Book book : this.bookList){
+//            bookDtoList.add(book.toDto());
+//        }
+//        branchDto.setBookList(bookDtoList);
 
         return branchDto;
     }

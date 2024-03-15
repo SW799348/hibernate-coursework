@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="496.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.coursework.controller.User.UserSettingFormController">
+   <children>
+      <Text fill="#4a5d98" layoutX="54.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Settings">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="69.0" fitWidth="73.0" layoutX="338.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assests/icons8-user-48.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblUserId" layoutX="160.0" layoutY="165.0" prefHeight="27.0" prefWidth="180.0" style="-fx-background-color: ash;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUsername" layoutX="397.0" layoutY="165.0" prefHeight="27.0" prefWidth="180.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUsername" layoutX="257.0" layoutY="216.0" prefHeight="39.0" prefWidth="244.0" promptText="username" style="-fx-background-radius: 5;" />
+      <TextField fx:id="txtEmail" layoutX="257.0" layoutY="270.0" prefHeight="39.0" prefWidth="244.0" promptText="e-mail" style="-fx-background-radius: 5;" />
+      <TextField fx:id="txtPassword" layoutX="257.0" layoutY="325.0" prefHeight="39.0" prefWidth="244.0" promptText="password" style="-fx-background-radius: 5;" />
+      <JFXButton layoutX="328.0" layoutY="386.0" onAction="#btnUpdateUSerSettingsOnAction" prefHeight="39.0" prefWidth="97.0" style="-fx-background-color: #4a5d98;" text="update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

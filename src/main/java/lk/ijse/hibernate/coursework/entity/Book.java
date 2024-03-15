@@ -27,8 +27,8 @@ public class Book {
     private String author;
     private String genre;
     private boolean availabilityStatus;
-
     private int qty;
+
 
 
     @ManyToOne
@@ -49,14 +49,12 @@ public class Book {
         bookDto.setGenre(this.genre);
         bookDto.setAvailabilityStatus(this.availabilityStatus);
         bookDto.setQty(this.qty);
-        bookDto.setAdmin(this.admin);
-        bookDto.setBranch(this.branch);
-
-        List<TransactionDto> transactionDtos=new ArrayList<>();
-        for(Transaction transaction : this.transactions){
-            transactionDtos.add(transaction.toDto());
-        }
-        bookDto.setTransactionList(transactionDtos);
+//
+//        List<TransactionDto> transactionDtos=new ArrayList<>();
+//        for(Transaction transaction : this.transactions){
+//            transactionDtos.add(transaction.toDto());
+//        }
+//        bookDto.setTransactionList(transactionDtos);
 
         return bookDto;
     }

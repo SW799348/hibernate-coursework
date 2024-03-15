@@ -30,7 +30,14 @@ public class User {
     private Admin admin;
 
     @OneToMany(mappedBy = "user")
-    private List<Transaction> transactionList;
+    private List<Transaction> transactionList=new ArrayList<>();
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+
+    }
 
 
 
@@ -40,13 +47,17 @@ public class User {
         userDto.setName(this.name);
         userDto.setEmail(this.email);
         userDto.setPassword(this.password);
-        userDto.setAdmin(this.admin);
 
-        List<TransactionDto> transactionDtos=new ArrayList<>();
-        for (Transaction transaction : this.transactionList){
-            transactionDtos.add(transaction.toDto());
-        }
-        userDto.setTransactionList(transactionDtos);
+//        if (this.admin != null) {
+//            userDto.setAdmin(this.admin);
+//        }
+//
+//
+//        List<TransactionDto> transactionDtos=new ArrayList<>();
+//        for (Transaction transaction : this.transactionList){
+//            transactionDtos.add(transaction.toDto());
+//        }
+//        userDto.setTransactionList(transactionDtos);
 
         return userDto;
     }

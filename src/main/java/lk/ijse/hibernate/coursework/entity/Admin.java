@@ -45,23 +45,23 @@ public class Admin {
                 adminDto.setPassword(this.password);
 
 
-                List<BookDto> bookDtoList=new ArrayList<>();
-                for (Book book:this.bookList){
-                        bookDtoList.add(book.toDto());
-                }
-                adminDto.setBookList(bookDtoList);
-
-                List<UserDto> userDtoList=new ArrayList<>();
-                for (User user : this.userList){
-                        userDtoList.add(user.toDto());
-                }
-                adminDto.setUserList(userDtoList);
-
-                List<BranchDto> branchDtoList=new ArrayList<>();
-                for (Branch branch :this.branchList){
-                        branchDtoList.add(branch.toDto());
-                }
-                adminDto.setBranchList(branchDtoList);
+//                List<BookDto> bookDtoList=new ArrayList<>();
+//                for (Book book:this.bookList){
+//                        bookDtoList.add(book.toDto());
+//                }
+//                adminDto.setBookList(bookDtoList);
+//
+//                List<UserDto> userDtoList=new ArrayList<>();
+//                for (User user : this.userList){
+//                        userDtoList.add(user.toDto());
+//                }
+//                adminDto.setUserList(userDtoList);
+//
+//                List<BranchDto> branchDtoList=new ArrayList<>();
+//                for (Branch branch :this.branchList){
+//                        branchDtoList.add(branch.toDto());
+//                }
+//                adminDto.setBranchList(branchDtoList);
 
                 return adminDto;
         }

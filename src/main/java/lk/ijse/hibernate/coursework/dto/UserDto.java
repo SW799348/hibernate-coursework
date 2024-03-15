@@ -21,21 +21,28 @@ public class UserDto implements Serializable {
     private String email;
     private String password;
 
-    private List<TransactionDto> transactionList;
-    private Admin admin;
+    private List<TransactionDto> transactionList = new ArrayList<>();
+    private AdminDto admin;
 
 
-public User toEntity(){
-    User userEntity = new User();
-    userEntity.setUserID(this.userID);
-    userEntity.setName(this.name);
-    userEntity.setEmail(this.email);
+    public User toEntity() {
+        User userEntity = new User();
+        userEntity.setUserID(this.userID);
+        userEntity.setName(this.name);
+        userEntity.setEmail(this.email);
 
-    List<Transaction> transactions=new ArrayList<>();
-    for (TransactionDto transactionDto: this.transactionList){
-          transactions.add(transactionDto.toEntity());
+        if (transactionList != null) {
+            List<Transaction> transactions = new ArrayList<>();
+            for (TransactionDto transactionDto : this.transactionList) {
+                transactions.add(transactionDto.toEntity());
+            }
+            userEntity.setTransactionList(transactions);
+        }
+
+        if(admin!=null){
+            userEntity.setAdmin(admin.toEntity());
+        }
+
+        return userEntity;
     }
-    userEntity.setTransactionList(transactions);
-    return userEntity;
-}
 }

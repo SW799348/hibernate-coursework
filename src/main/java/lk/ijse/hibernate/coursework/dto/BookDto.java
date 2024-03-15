@@ -8,15 +8,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class BookDto{
+public class BookDto {
 
     private Long bookID;
     private String title;
@@ -24,29 +23,38 @@ public class BookDto{
     private String genre;
     private boolean availabilityStatus;
     private int qty;
-    private Admin admin;
+    private AdminDto adminDto;
     private List<TransactionDto> transactionList;
-    private Branch branch;
+    private BranchDto branchDto;
 
 
-    public Book toEntity(){
+    public Book toEntity() {
+
         Book bookEntity = new Book();
+
         bookEntity.setBookID(this.bookID);
         bookEntity.setTitle(this.title);
         bookEntity.setAuthor(this.author);
         bookEntity.setGenre(this.genre);
         bookEntity.setAvailabilityStatus(this.availabilityStatus);
         bookEntity.setQty(this.qty);
-        bookEntity.setAdmin(this.admin);
-        bookEntity.setBranch(this.branch);
 
-
-
-        List<Transaction> transactions = new ArrayList<>();
-        for (TransactionDto transactionDto : this.transactionList) {
-            transactions.add(transactionDto.toEntity());
+        if (adminDto != null) {
+            bookEntity.setAdmin(adminDto.toEntity());
         }
-        bookEntity.setTransactions(transactions);
+
+        if (branchDto != null) {
+            bookEntity.setBranch(branchDto.toEntity());
+        }
+
+        if (transactionList != null) {
+            List<Transaction> transactions = new ArrayList<>();
+            for (TransactionDto transactionDto : this.transactionList) {
+                transactions.add(transactionDto.toEntity());
+            }
+            bookEntity.setTransactions(transactions);
+        }
+
         return bookEntity;
 
     }

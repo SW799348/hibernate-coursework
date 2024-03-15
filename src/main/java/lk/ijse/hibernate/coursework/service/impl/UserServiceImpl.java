@@ -6,10 +6,10 @@ import lk.ijse.hibernate.coursework.repository.impl.UserRepositoryImpl;
 import lk.ijse.hibernate.coursework.repository.inter.UserRepository;
 import lk.ijse.hibernate.coursework.service.inter.UserService;
 import lk.ijse.hibernate.coursework.util.SessionFactoryConfig;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,14 +25,14 @@ public class UserServiceImpl implements UserService {
 
     private UserServiceImpl() {
        userRepository= UserRepositoryImpl.getInstance();
-       userDtoList=getAllUsers();
+        userDtoList=getAllUsers();
     }
 
     public static UserService getInstance(){
         return null==userService? userService=new UserServiceImpl() : userService;
     }
     @Override
-    public Long saveUser(UserDto userDto) {
+    public boolean saveUser(UserDto userDto) {
 
         session = SessionFactoryConfig.getInstance()
                 .getSession();
@@ -42,12 +42,14 @@ public class UserServiceImpl implements UserService {
             Long id = userRepository.save(userDto.toEntity());
             transaction.commit();
             session.close();
-            return id;
+            return true;
         } catch (Exception ex) {
-            transaction.rollback();
-            session.close();
+            if (transaction !=null){
+                transaction.rollback();
+            }
             ex.printStackTrace();
-            return -1L;
+            session.close();
+            return false;
         }
     }
 
@@ -112,22 +114,29 @@ public class UserServiceImpl implements UserService {
                 .getSession();
         userRepository.setSession(session);
         List<User> allUsers = userRepository.getAll(); // Here we're getting Entity type object result
-        List<UserDto> userDtoList = new ArrayList<>();
+        List<UserDto> userDtos = new ArrayList<>();
         for (User user : allUsers) {
-            userDtoList.add(user.toDto()); // We convert the Entity back to a dto type before return to the controller
+            userDtos.add(user.toDto()); // We convert the Entity back to a dto type before return to the controller
         }
-        return userDtoList;
+        return userDtos;
+
     }
 
     @Override
     public boolean authenticateUser(String username, String password) {
-        for (UserDto userDto : userDtoList){
-            if(userDto.getName().equals(username) && userDto.getPassword().equals(password)){
+        for (UserDto userDto : userDtoList) {
+            if (userDto.getName().equals(username) && userDto.getPassword().equals(password)) {
                 return true;
             }
         }
+
         return false;
-    }
+}
+
+
+
+
+
 
 
 }

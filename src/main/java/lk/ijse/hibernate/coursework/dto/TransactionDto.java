@@ -17,23 +17,31 @@ import java.util.Date;
 public class TransactionDto implements Serializable {
 
     private Long transactionID;
-    private User user;
-    private Book book;
+    private UserDto user;
+    private BookDto book;
     private Date borrowDate;
     private Date returnDate;
     private Date DueDate;
-    private int qty;
+
 
     public Transaction toEntity(){
         Transaction transactionEntity = new Transaction();
 
         transactionEntity.setTransactionID(this.transactionID);
-        transactionEntity.setUser(this.user);
-        transactionEntity.setBook(this.book);
         transactionEntity.setBorrowDate(this.borrowDate);
         transactionEntity.setReturnDate(this.returnDate);
         transactionEntity.setDueDate(this.DueDate);
-        transactionEntity.setQty(this.qty);
+
+        if(user!=null){
+            transactionEntity.setUser(user.toEntity());
+        }
+
+
+        if(book!=null){
+            transactionEntity.setBook(book.toEntity());
+        }
+
+
 
         return transactionEntity;
 

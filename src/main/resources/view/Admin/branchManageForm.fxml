@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="496.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.coursework.controller.Admin.BranchManageFormController">
+   <children>
+      <Text fill="#4a5d98" layoutX="56.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Branch Manage">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <TextField fx:id="colBranchId" layoutX="101.0" layoutY="113.0" prefHeight="33.0" prefWidth="187.0" promptText="Branch Id" />
+      <TextField fx:id="colBranchName" layoutX="311.0" layoutY="113.0" prefHeight="33.0" prefWidth="187.0" promptText="Branch Name" />
+      <TextField fx:id="colLocation" layoutX="101.0" layoutY="166.0" prefHeight="33.0" prefWidth="187.0" promptText="Location" />
+      <TextField fx:id="colAdminID" layoutX="311.0" layoutY="166.0" prefHeight="33.0" prefWidth="187.0" promptText="Admin ID" />
+      <JFXButton layoutX="548.0" layoutY="113.0" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #4a5d98;" text="save" textFill="WHITE" />
+      <JFXButton layoutX="548.0" layoutY="145.0" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #4a5d98;" text="update" textFill="WHITE" />
+      <JFXButton layoutX="549.0" layoutY="177.0" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #4a5d98;" text="delete" textFill="WHITE" />
+      <JFXButton layoutX="481.0" layoutY="37.0" onAction="#btnSearchOnAction" prefHeight="31.0" prefWidth="67.0" style="-fx-background-color: #4a5d98;" text="search" textFill="WHITE" />
+      <TextField fx:id="txtSearch" layoutX="548.0" layoutY="37.0" prefHeight="31.0" prefWidth="160.0" promptText="search book here" />
+      <TableView fx:id="tblBranch" layoutX="44.0" layoutY="261.0" prefHeight="200.0" prefWidth="648.0">
+        <columns>
+          <TableColumn prefWidth="108.00002670288086" text="Branch Id" />
+          <TableColumn prefWidth="209.3332977294922" text="Branch Name" />
+            <TableColumn prefWidth="190.66659545898438" text="Location" />
+            <TableColumn prefWidth="139.3333740234375" text="Admin Id" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

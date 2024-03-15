@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService  extends SuperService {
 
-    Long saveUser(UserDto userDto);
+    boolean saveUser(UserDto userDto);
     UserDto getUser(long id);
     boolean updateUser(UserDto userDto);
     boolean deleteUser(UserDto userDto);
@@ -15,4 +15,6 @@ public interface UserService  extends SuperService {
 
 
     boolean authenticateUser(String username, String password);
+
+
 }

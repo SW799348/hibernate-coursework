@@ -21,22 +21,30 @@ public class BranchDto implements Serializable {
     private String branchName;
     private String location;
 
-    private Admin admin;
+    private AdminDto adminDto;
     private List<BookDto> bookList;
 
 
     public Branch toEntity(){
-        Branch branchDto = new Branch();
-        branchDto.setBranchID(this.branchID);
-        branchDto.setBranchName(this.branchName);
-        branchDto.setLocation(this.location);
-        branchDto.setAdmin(this.admin);
+        Branch branchEntity = new Branch();
 
-        List<Book> books=new ArrayList<>();
-        for(BookDto bookDto : this.bookList){
-            books.add(bookDto.toEntity());
+        branchEntity.setBranchID(this.branchID);
+        branchEntity.setBranchName(this.branchName);
+        branchEntity.setLocation(this.location);
+
+        if(adminDto!=null){
+            branchEntity.setAdmin(adminDto.toEntity());
         }
-        branchDto.setBookList(books);
-        return branchDto;
+
+        if (bookList!=null){
+            List<Book> books=new ArrayList<>();
+            for(BookDto bookDto : this.bookList){
+                books.add(bookDto.toEntity());
+            }
+            branchEntity.setBookList(books);
+        }
+
+
+        return branchEntity;
     }
 }

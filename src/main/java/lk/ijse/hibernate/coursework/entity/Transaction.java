@@ -34,19 +34,24 @@ public class Transaction {
     private Date returnDate;
 
     private Date DueDate;
-    private int qty;
+
 
 
     public TransactionDto toDto(){
         TransactionDto transactionDto = new TransactionDto();
 
         transactionDto.setTransactionID(this.transactionID);
-        transactionDto.setUser(this.user);
-        transactionDto.setBook(this.book);
         transactionDto.setBorrowDate(this.borrowDate);
         transactionDto.setReturnDate(this.returnDate);
         transactionDto.setDueDate(this.DueDate);
-        transactionDto.setQty(this.qty);
+
+        if(book!=null){
+            transactionDto.setBook(book.toDto());
+        }
+
+        if(user!=null){
+            transactionDto.setUser(user.toDto());
+        }
 
         return transactionDto;
     }

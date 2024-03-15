@@ -1,4 +1,4 @@
-package lk.ijse.hibernate.coursework.controller;
+package lk.ijse.hibernate.coursework.controller.Admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,17 +7,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.hibernate.coursework.service.impl.AdminServiceImpl;
 import lk.ijse.hibernate.coursework.service.impl.UserServiceImpl;
+import lk.ijse.hibernate.coursework.service.inter.AdminService;
 import lk.ijse.hibernate.coursework.service.inter.UserService;
 
 import java.io.IOException;
 
+public class AdminLoginFormController {
 
-public class UserLoginFormController {
-
+    @FXML
+    private AnchorPane loginAnchorPane;
 
     @FXML
     private TextField txtPassword;
@@ -25,28 +27,11 @@ public class UserLoginFormController {
     @FXML
     private TextField txtUsername;
 
-    @FXML
-    private AnchorPane loginAnchorPane;
-
-    private  UserService userService;
+    private AdminService adminService;
 
 
-   public void initialize(){
-       userService=UserServiceImpl.getInstance();
-   }
-
-
-    @FXML
-    void SignUpOnAction(MouseEvent event) throws IOException {
-
-        Parent loginAnchorPane = FXMLLoader.load(this.getClass().getResource("/view/UserForm.fxml"));
-
-        Scene scene = new Scene(loginAnchorPane);
-        Stage stage = (Stage) this.loginAnchorPane.getScene().getWindow();
-
-        stage.setTitle("Dashboard");
-        stage.setScene(scene);
-        stage.centerOnScreen();
+    public void initialize(){
+     adminService=AdminServiceImpl.getInstance();
     }
 
     @FXML
@@ -55,7 +40,7 @@ public class UserLoginFormController {
         String username=txtUsername.getText();
         String password = txtPassword.getText();
 
-        boolean isAuthenticated = userService.authenticateUser(username, password);
+        boolean isAuthenticated = adminService.authenticateAdmin(username, password);
 
         if (isAuthenticated ) {
 
