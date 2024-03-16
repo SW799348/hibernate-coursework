@@ -20,6 +20,7 @@ public class DashboardUserFormController {
     @FXML
     private JFXButton btnHome;
 
+
     @FXML
     private JFXButton btnMyBooks;
 
@@ -83,7 +84,7 @@ public class DashboardUserFormController {
         btnSignOut.setOnMouseClicked(mouseEvent -> {
             Parent rootNode = null;
             try {
-                rootNode = FXMLLoader.load(this.getClass().getResource("/view/User/userLoginForm.fxml"));
+                rootNode = FXMLLoader.load(this.getClass().getResource("/view/userLoginForm.fxml"));
                 Scene scene = new Scene(rootNode);
 
                 mainAnchorPane.getChildren().clear();

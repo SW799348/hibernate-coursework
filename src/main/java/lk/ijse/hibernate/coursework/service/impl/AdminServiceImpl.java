@@ -1,13 +1,10 @@
 package lk.ijse.hibernate.coursework.service.impl;
 
-import lk.ijse.hibernate.coursework.dto.AdminDto;
-import lk.ijse.hibernate.coursework.dto.UserDto;
+import lk.ijse.hibernate.coursework.dto.AdminDTO;
 import lk.ijse.hibernate.coursework.entity.Admin;
-import lk.ijse.hibernate.coursework.entity.User;
 import lk.ijse.hibernate.coursework.repository.impl.AdminRepositoryImpl;
 import lk.ijse.hibernate.coursework.repository.inter.AdminRepository;
 import lk.ijse.hibernate.coursework.service.inter.AdminService;
-import lk.ijse.hibernate.coursework.service.inter.UserService;
 import lk.ijse.hibernate.coursework.util.SessionFactoryConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,31 +14,31 @@ import java.util.List;
 
 public class AdminServiceImpl implements AdminService {
 
-    private static AdminService adminService;
-
     private Session session;
+    private static AdminService adminService;
 
     private final AdminRepository adminRepository;
 
-    private List<AdminDto> adminDtoList;
+    private List<AdminDTO>adminDTOList;
 
     private AdminServiceImpl(){
-    adminRepository=AdminRepositoryImpl.getInstance();
-    adminDtoList=getAllAdmins();
-
+        adminRepository=AdminRepositoryImpl.getInstance();
+        adminDTOList=getAllAdmins();
     }
-
     public static AdminService getInstance(){
-        return null==adminService?adminService=new AdminServiceImpl() :adminService;
+        return null==adminService
+                ?adminService=new AdminServiceImpl()
+                :adminService;
     }
+
     @Override
-    public Long saveAdmin(AdminDto adminDto) {
+    public Long saveAdmin(AdminDTO adminDTO) {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         Transaction transaction = session.beginTransaction();
         try {
             adminRepository.setSession(session);
-            Long id = adminRepository.save(adminDto.toEntity());
+            Long id = adminRepository.save(adminDTO.toEntity());
             transaction.commit();
             session.close();
             return id;
@@ -54,14 +51,14 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public AdminDto getAdmin(long id) {
+    public AdminDTO getAdmin(long id) {
         try {
             session = SessionFactoryConfig.getInstance()
                     .getSession();
             adminRepository.setSession(session);
             Admin admin = adminRepository.get(id);
             session.close();
-            return admin.toDto();
+            return admin.toDTO();
         } catch (Exception ex) {
             ex.printStackTrace();
             throw ex;
@@ -69,14 +66,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public boolean updateAdmin(AdminDto adminDto) {
+    public boolean updateAdmin(AdminDTO adminDTO) {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         Transaction transaction = session.beginTransaction();
         try {
             adminRepository.setSession(session);
-            adminRepository.update(adminDto.toEntity());
-            transaction.commit();
+            adminRepository.update(adminDTO.toEntity());
             session.close();
             return true;
         } catch (Exception ex) {
@@ -88,13 +84,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public boolean deleteAdmin(AdminDto adminDto) {
+    public boolean deleteAdmin(AdminDTO adminDTO) {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         Transaction transaction = session.beginTransaction();
         try {
             adminRepository.setSession(session);
-            adminRepository.delete(adminDto.toEntity()); // We pass it to the repository by converting it to an entity
+            adminRepository.delete(adminDTO.toEntity());
             transaction.commit();
             session.close();
             return true;
@@ -107,25 +103,16 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<AdminDto> getAllAdmins() {
+    public List<AdminDTO> getAllAdmins() {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         adminRepository.setSession(session);
-        List<Admin> allAdmins = adminRepository.getAll(); // Here we're getting Entity type object result
-        List<AdminDto> adminDtoArrayList = new ArrayList<>();
+        List<Admin> allAdmins= adminRepository.getAll();
+        List<AdminDTO> adminDTOList = new ArrayList<>();
         for (Admin admin : allAdmins) {
-            adminDtoArrayList.add(admin.toDto()); // We convert the Entity back to a dto type before return to the controller
+            adminDTOList.add(admin.toDTO());
         }
-        return adminDtoArrayList;
+        return adminDTOList;
     }
 
-    @Override
-    public boolean authenticateAdmin(String username, String password) {
-        for (AdminDto adminDto : adminDtoList){
-            if(adminDto.getUsername().equals(username) && adminDto.getPassword().equals(password)){
-                return true;
-            }
-        }
-        return false;
-    }
 }

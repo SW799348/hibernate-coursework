@@ -11,33 +11,38 @@ import java.util.List;
 public class BookRepositoryImpl implements BookRepository {
 
     private Session session;
-
-    private static BookRepositoryImpl bookRepository;
-
+    private static BookRepositoryImpl bookRepositoryImpl;
     private BookRepositoryImpl(){}
 
     public static BookRepositoryImpl getInstance(){
-        return null==bookRepository? bookRepository=new BookRepositoryImpl(): bookRepository;
+        return null==bookRepositoryImpl
+                ?bookRepositoryImpl=new BookRepositoryImpl()
+                :bookRepositoryImpl;
     }
 
     @Override
-    public Long save(Book book) {
-        return (Long) session.save(book);
+    public void setSession(Session session) {
+        this.session = session;
     }
 
     @Override
-    public void update(Book book) {
-     session.update(book);
+    public Long save(Book object) {
+        return (Long) session.save(object);
     }
 
     @Override
-    public Book get(Long id) {
-        return session.get(Book.class,id);
+    public void update(Book object) {
+        session.update(object);
     }
 
     @Override
-    public void delete(Book book) {
-    session.delete(book);
+    public Book get(Long aLong) {
+        return session.get(Book.class, aLong);
+    }
+
+    @Override
+    public void delete(Book object) {
+        session.delete(object);
     }
 
     @Override
@@ -45,12 +50,9 @@ public class BookRepositoryImpl implements BookRepository {
         String sqlQuery = "FROM Book";
         Query query = session.createQuery(sqlQuery);
         List list = query.list();
+
         session.close();
         return list;
     }
 
-    @Override
-    public void setSession(Session session) {
-         this.session=session;
-    }
 }

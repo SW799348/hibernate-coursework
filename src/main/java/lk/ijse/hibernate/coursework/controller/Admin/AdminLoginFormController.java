@@ -9,12 +9,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.hibernate.coursework.dto.AdminDTO;
+import lk.ijse.hibernate.coursework.navigation.Navigation;
+import lk.ijse.hibernate.coursework.navigation.Routes;
 import lk.ijse.hibernate.coursework.service.impl.AdminServiceImpl;
 import lk.ijse.hibernate.coursework.service.impl.UserServiceImpl;
 import lk.ijse.hibernate.coursework.service.inter.AdminService;
 import lk.ijse.hibernate.coursework.service.inter.UserService;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AdminLoginFormController {
 
@@ -29,37 +33,28 @@ public class AdminLoginFormController {
 
     private AdminService adminService;
 
+    public static Long adminId;
 
-    public void initialize(){
-     adminService=AdminServiceImpl.getInstance();
+
+    public void initialize() {
+
+        adminService = AdminServiceImpl.getInstance();
     }
 
     @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {
 
-        String username=txtUsername.getText();
-        String password = txtPassword.getText();
+        List<AdminDTO> allAdmins = adminService.getAllAdmins();
+        for (AdminDTO adminDto : allAdmins) {
+            if (adminDto.getUsername().equals(txtUsername.getText()) && adminDto.getPassword().equals(txtPassword.getText())) {
+                adminId = adminDto.getId();
+                Navigation.navigate(Routes.HOMEADMIN, loginAnchorPane);
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Admin not found").show();
+            }
 
-        boolean isAuthenticated = adminService.authenticateAdmin(username, password);
-
-        if (isAuthenticated ) {
-
-            Parent loginAnchorPane = FXMLLoader.load(this.getClass().getResource("/view/UserForm.fxml"));
-
-            Scene scene = new Scene(loginAnchorPane);
-            Stage stage = (Stage) this.loginAnchorPane.getScene().getWindow();
-
-            stage.setTitle("Dashboard");
-            stage.setScene(scene);
-            stage.centerOnScreen();
-        }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Login Failed");
-            alert.setHeaderText(null);
-            alert.setContentText("Invalid username or password.");
-            alert.showAndWait();
         }
-
     }
 
 }
+

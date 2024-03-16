@@ -1,6 +1,6 @@
 package lk.ijse.hibernate.coursework.entity;
 
-import lk.ijse.hibernate.coursework.dto.TransactionDto;
+import lk.ijse.hibernate.coursework.dto.TransactionDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,51 +8,43 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Entity
 @Table(name = "transactions")
 
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long transactionID;
+    private Long id;
+
+    private Date returnDate;
+    private Date borrowDate;
+    private Date dueDate;
+    private int qty;
+
+
 
     @ManyToOne
-    @JoinColumn(name = "userID")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "bookID")
     private Book book;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date borrowDate;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date returnDate;
-
-    private Date DueDate;
-
-
-
-    public TransactionDto toDto(){
-        TransactionDto transactionDto = new TransactionDto();
-
-        transactionDto.setTransactionID(this.transactionID);
-        transactionDto.setBorrowDate(this.borrowDate);
-        transactionDto.setReturnDate(this.returnDate);
-        transactionDto.setDueDate(this.DueDate);
-
-        if(book!=null){
-            transactionDto.setBook(book.toDto());
+    public TransactionDTO toDTO(){
+        TransactionDTO transactionDTO = new TransactionDTO();
+        transactionDTO.setId(this.id);
+        transactionDTO.setReturnDate(this.returnDate);
+        transactionDTO.setBorrowDate(this.borrowDate);
+        transactionDTO.setDueDate(this.dueDate);
+        transactionDTO.setQty(this.qty);
+        if (this.user!=null) {
+            transactionDTO.setUser(this.user.toDTO());
         }
-
-        if(user!=null){
-            transactionDto.setUser(user.toDto());
+        if (this.book!=null) {
+            transactionDTO.setBook(this.book.toDTO());
         }
-
-        return transactionDto;
+        return transactionDTO;
     }
 }

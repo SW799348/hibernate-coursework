@@ -12,43 +12,47 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 
     private Session session;
     private static TransactionRepositoryImpl transactionRepositoryImpl;
-
     private TransactionRepositoryImpl(){}
 
     public static TransactionRepositoryImpl getInstance(){
-        return null==transactionRepositoryImpl?transactionRepositoryImpl=new TransactionRepositoryImpl():transactionRepositoryImpl;
+        return null==transactionRepositoryImpl
+                ?transactionRepositoryImpl=new TransactionRepositoryImpl()
+                :transactionRepositoryImpl;
     }
     @Override
-    public Long save(Transaction transaction) {
-        return (Long) session.save(transaction);
+    public void setSession(Session session) {
+        this.session = session;
     }
-
     @Override
-    public void update(Transaction transaction) {
-      session.update(transaction);
-    }
-
-    @Override
-    public Transaction get(Long id) {
-        return session.get(Transaction.class,id);
+    public Long save(Transaction object) {
+        return (Long) session.save(object);
     }
 
     @Override
-    public void delete(Transaction transaction) {
-session.delete(transaction);
+    public void update(Transaction object) {
+        session.update(object);
+
+    }
+
+    @Override
+    public Transaction get(Long aLong) {
+        return session.get(Transaction.class, aLong);
+    }
+
+    @Override
+    public void delete(Transaction object) {
+        session.delete(object);
     }
 
     @Override
     public List<Transaction> getAll() {
-        String sql="FROM Transaction";
-        Query query = session.createQuery(sql);
+        String sqlQuery = "FROM Transaction ";
+        Query query = session.createQuery(sqlQuery);
         List list = query.list();
+
         session.close();
         return list;
     }
 
-    @Override
-    public void setSession(Session session) {
-     this.session=session;
-    }
+
 }

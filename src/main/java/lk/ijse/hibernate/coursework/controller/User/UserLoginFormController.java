@@ -10,70 +10,55 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.hibernate.coursework.dto.AdminDTO;
+import lk.ijse.hibernate.coursework.dto.UserDTO;
+import lk.ijse.hibernate.coursework.navigation.Navigation;
+import lk.ijse.hibernate.coursework.navigation.Routes;
 import lk.ijse.hibernate.coursework.service.impl.UserServiceImpl;
 import lk.ijse.hibernate.coursework.service.inter.UserService;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class UserLoginFormController {
 
-
+    @FXML
+    private AnchorPane loginAnchorPane;
     @FXML
     private TextField txtPassword;
 
     @FXML
     private TextField txtUsername;
 
-    @FXML
-    private AnchorPane loginAnchorPane;
 
     private  UserService userService;
 
 
-   public void initialize(){
+
+    public void initialize(){
        userService=UserServiceImpl.getInstance();
    }
 
 
     @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {
+        List<UserDTO> allUsers = userService.getAllUsers();
+        for (UserDTO userDTO : allUsers) {
+            if (userDTO.getUsername().equals(txtUsername.getText()) && userDTO.getPassword().equals(txtPassword.getText())) {
+                new Alert(Alert.AlertType.CONFIRMATION, "login successfully!").showAndWait();
+                Navigation.navigate(Routes.HOMEUSER, loginAnchorPane);
 
-        String username=txtUsername.getText();
-        String password = txtPassword.getText();
+            }
 
-        boolean isAuthenticated = userService.authenticateUser(username, password);
-
-        if (isAuthenticated ) {
-
-            Parent loginAnchorPane = FXMLLoader.load(this.getClass().getResource("/view/User/dashboardUserForm.fxml"));
-
-            Scene scene = new Scene(loginAnchorPane);
-            Stage stage = (Stage) this.loginAnchorPane.getScene().getWindow();
-
-            stage.setTitle("User Dashboard");
-            stage.setScene(scene);
-            stage.centerOnScreen();
-        }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Login Failed");
-            alert.setHeaderText(null);
-            alert.setContentText("Invalid username or password.");
-            alert.showAndWait();
         }
-
     }
+
+
 
     @FXML
     void SignUpOnAction(MouseEvent event) throws IOException {
-        Parent loginAnchorPane = FXMLLoader.load(this.getClass().getResource("/view/User/userSignUpForm.fxml"));
-
-        Scene scene = new Scene(loginAnchorPane);
-        Stage stage = (Stage) this.loginAnchorPane.getScene().getWindow();
-
-        stage.setTitle("User Dashboard");
-        stage.setScene(scene);
-        stage.centerOnScreen();
+       Navigation.navigate(Routes.USERSIGNUP, loginAnchorPane);
     }
 
 }

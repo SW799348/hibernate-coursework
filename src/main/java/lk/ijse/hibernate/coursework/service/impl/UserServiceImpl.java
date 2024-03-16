@@ -1,12 +1,11 @@
 package lk.ijse.hibernate.coursework.service.impl;
 
-import lk.ijse.hibernate.coursework.dto.UserDto;
+import lk.ijse.hibernate.coursework.dto.UserDTO;
 import lk.ijse.hibernate.coursework.entity.User;
 import lk.ijse.hibernate.coursework.repository.impl.UserRepositoryImpl;
 import lk.ijse.hibernate.coursework.repository.inter.UserRepository;
 import lk.ijse.hibernate.coursework.service.inter.UserService;
 import lk.ijse.hibernate.coursework.util.SessionFactoryConfig;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -15,53 +14,49 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
+    private Session session;
     private static UserService userService;
 
-    private Session session;
-
     private final UserRepository userRepository;
+    private List<UserDTO>userDTOList;
 
-    private List<UserDto> userDtoList;
-
-    private UserServiceImpl() {
-       userRepository= UserRepositoryImpl.getInstance();
-        userDtoList=getAllUsers();
+    private UserServiceImpl(){
+        userRepository=UserRepositoryImpl.getInstance();
+        userDTOList=getAllUsers();
     }
-
     public static UserService getInstance(){
-        return null==userService? userService=new UserServiceImpl() : userService;
+        return (null==userService)
+                ?userService=new UserServiceImpl()
+                :userService;
     }
     @Override
-    public boolean saveUser(UserDto userDto) {
-
+    public Long saveUser(UserDTO userDTO) {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         Transaction transaction = session.beginTransaction();
         try {
             userRepository.setSession(session);
-            Long id = userRepository.save(userDto.toEntity());
+            Long id = userRepository.save(userDTO.toEntity());
             transaction.commit();
             session.close();
-            return true;
+            return id;
         } catch (Exception ex) {
-            if (transaction !=null){
-                transaction.rollback();
-            }
-            ex.printStackTrace();
+            transaction.rollback();
             session.close();
-            return false;
+            ex.printStackTrace();
+            return -1L;
         }
     }
 
     @Override
-    public UserDto getUser(long id) {
+    public UserDTO getUser(long id) {
         try {
             session = SessionFactoryConfig.getInstance()
                     .getSession();
             userRepository.setSession(session);
             User user = userRepository.get(id);
             session.close();
-            return user.toDto();
+            return user.toDTO();
         } catch (Exception ex) {
             ex.printStackTrace();
             throw ex;
@@ -69,14 +64,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateUser(UserDto userDto) {
-
-        session = SessionFactoryConfig.getInstance()
-                .getSession();
+    public boolean updateUser(UserDTO userDTO) {
+        session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         try {
             userRepository.setSession(session);
-            userRepository.update(userDto.toEntity());
+            userRepository.update(userDTO.toEntity());
             transaction.commit();
             session.close();
             return true;
@@ -89,14 +82,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteUser(UserDto userDto) {
-
+    public boolean deleteUser(UserDTO userDTO) {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         Transaction transaction = session.beginTransaction();
         try {
             userRepository.setSession(session);
-            userRepository.delete(userDto.toEntity()); // We pass it to the repository by converting it to an entity
+            userRepository.delete(userDTO.toEntity());
             transaction.commit();
             session.close();
             return true;
@@ -109,33 +101,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         userRepository.setSession(session);
-        List<User> allUsers = userRepository.getAll(); // Here we're getting Entity type object result
-        List<UserDto> userDtos = new ArrayList<>();
+        List<User> allUsers= userRepository.getAll();
+        List<UserDTO> userDTOList = new ArrayList<>();
         for (User user : allUsers) {
-            userDtos.add(user.toDto()); // We convert the Entity back to a dto type before return to the controller
+            userDTOList.add(user.toDTO());
         }
-        return userDtos;
-
+        return userDTOList;
     }
-
-    @Override
-    public boolean authenticateUser(String username, String password) {
-        for (UserDto userDto : userDtoList) {
-            if (userDto.getName().equals(username) && userDto.getPassword().equals(password)) {
-                return true;
-            }
-        }
-
-        return false;
-}
-
-
-
-
 
 
 

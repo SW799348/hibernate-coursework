@@ -1,8 +1,14 @@
 package lk.ijse.hibernate.coursework.controller.User;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import lk.ijse.hibernate.coursework.dto.TransactionDTO;
+import lk.ijse.hibernate.coursework.service.impl.BookServiceImpl;
+import lk.ijse.hibernate.coursework.service.impl.TransactionServiceImpl;
+import lk.ijse.hibernate.coursework.service.inter.BookService;
+import lk.ijse.hibernate.coursework.service.inter.TransactionService;
+
+import java.util.Optional;
 
 public class BorrowBooksFormController {
 
@@ -25,7 +31,18 @@ public class BorrowBooksFormController {
     private TableColumn<?, ?> colUsername;
 
     @FXML
-    private TableView<?> tblMyBooks;
+    private TableView<TransactionDTO> tblMyBooks;
+
+    private TransactionService transactionService;
+
+    private BookService bookService;
+
+    public void initialize(){
+        transactionService= TransactionServiceImpl.getInstance();
+        bookService= BookServiceImpl.getInstance();
+    }
+
+
 
 
 

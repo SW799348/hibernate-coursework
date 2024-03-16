@@ -1,20 +1,20 @@
 package lk.ijse.hibernate.coursework.service.inter;
 
-import lk.ijse.hibernate.coursework.dto.UserDto;
+import lk.ijse.hibernate.coursework.dto.UserDTO;
 import lk.ijse.hibernate.coursework.service.SuperService;
 
 import java.util.List;
 
 public interface UserService  extends SuperService {
 
-    boolean saveUser(UserDto userDto);
-    UserDto getUser(long id);
-    boolean updateUser(UserDto userDto);
-    boolean deleteUser(UserDto userDto);
-    List<UserDto> getAllUsers();
+    Long saveUser(UserDTO userDTO);
 
+    UserDTO getUser(long id);
 
-    boolean authenticateUser(String username, String password);
+    boolean updateUser(UserDTO userDTO);
 
+    boolean deleteUser(UserDTO userDTO);
+
+    List<UserDTO> getAllUsers();
 
 }

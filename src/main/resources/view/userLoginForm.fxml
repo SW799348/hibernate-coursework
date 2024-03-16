@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="loginAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.coursework.controller.User.UserLoginFormController">
+   <children>
+      <ImageView fitHeight="374.0" fitWidth="507.0" layoutX="372.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/userlogin.png" />
+         </image>
+      </ImageView>
+      <Text fill="#4a5d98" layoutX="60.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BookWorm" wrappingWidth="252.21355438232422">
+         <font>
+            <Font name="Arial Bold" size="40.0" />
+         </font>
+      </Text>
+      <Text fill="#4a5d98" layoutX="198.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Online Library" wrappingWidth="174.8802261352539">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtUsername" layoutX="58.0" layoutY="191.0" prefHeight="37.0" prefWidth="303.0" promptText=" Username" style="-fx-background-color: #CDECF1; -fx-text-fill: black; -fx-background-radius: 5;" />
+      <TextField fx:id="txtPassword" layoutX="58.0" layoutY="236.0" prefHeight="37.0" prefWidth="303.0" promptText="Password" style="-fx-background-color: #CDECF1; -fx-text-fill: black; -fx-background-radius: 5;" />
+      <JFXButton layoutX="58.0" layoutY="301.0" onAction="#btnLoginOnAction" prefHeight="37.0" prefWidth="303.0" style="-fx-background-color: #ff9b55; -fx-background-radius: 5;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <Text fill="#4a5d98" layoutX="63.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to" wrappingWidth="174.8802261352539">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="210.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account ?">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Text>
+      <Text fill="#285a60" layoutX="309.0" layoutY="284.0" onMouseClicked="#SignUpOnAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up Here">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

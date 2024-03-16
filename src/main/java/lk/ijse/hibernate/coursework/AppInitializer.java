@@ -3,7 +3,6 @@ package lk.ijse.hibernate.coursework;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class AppInitializer extends Application {
@@ -16,7 +15,7 @@ public class AppInitializer extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/Admin/adminDashboardForm.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/userLoginForm.fxml"))));
         stage.centerOnScreen();
 
         stage.show();

@@ -1,7 +1,6 @@
 package lk.ijse.hibernate.coursework.service.impl;
 
-import lk.ijse.hibernate.coursework.dto.TransactionDto;
-import lk.ijse.hibernate.coursework.dto.UserDto;
+import lk.ijse.hibernate.coursework.dto.TransactionDTO;
 import lk.ijse.hibernate.coursework.repository.impl.TransactionRepositoryImpl;
 import lk.ijse.hibernate.coursework.repository.inter.TransactionRepository;
 import lk.ijse.hibernate.coursework.service.inter.TransactionService;
@@ -15,27 +14,26 @@ import java.util.List;
 public class TransactionServiceImpl implements TransactionService {
 
     private Session session;
-
     private static TransactionService transactionService;
 
     private final TransactionRepository transactionRepository;
 
     private TransactionServiceImpl(){
-        transactionRepository= TransactionRepositoryImpl.getInstance();
+        transactionRepository=TransactionRepositoryImpl.getInstance();
     }
-
     public static TransactionService getInstance(){
-        return null==transactionService?transactionService=new TransactionServiceImpl():transactionService;
+        return (null==transactionService)
+                ?transactionService=new TransactionServiceImpl()
+                :transactionService;
     }
-
     @Override
-    public Long saveTransaction(TransactionDto transactionDto) {
+    public Long saveTransaction(TransactionDTO transactionDTO) {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         Transaction transaction = session.beginTransaction();
         try {
             transactionRepository.setSession(session);
-            Long id = transactionRepository.save(transactionDto.toEntity());
+            Long id = transactionRepository.save(transactionDTO.toEntity());
             transaction.commit();
             session.close();
             return id;
@@ -48,14 +46,14 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public TransactionDto getTransaction(long id) {
+    public TransactionDTO getTransaction(long id) {
         try {
             session = SessionFactoryConfig.getInstance()
                     .getSession();
             transactionRepository.setSession(session);
             lk.ijse.hibernate.coursework.entity.Transaction transaction = transactionRepository.get(id);
             session.close();
-            return transaction.toDto();
+            return transaction.toDTO();
         } catch (Exception ex) {
             ex.printStackTrace();
             throw ex;
@@ -63,13 +61,13 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public boolean updateTransaction(TransactionDto transactionDto) {
+    public boolean updateTransaction(TransactionDTO transactionDTO) {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         Transaction transaction = session.beginTransaction();
         try {
             transactionRepository.setSession(session);
-            transactionRepository.update(transactionDto.toEntity());
+            transactionRepository.update(transactionDTO.toEntity());
             transaction.commit();
             session.close();
             return true;
@@ -82,13 +80,13 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public boolean deleteTransaction(TransactionDto transactionDto) {
+    public boolean deleteTransaction(TransactionDTO transactionDTO) {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         Transaction transaction = session.beginTransaction();
         try {
             transactionRepository.setSession(session);
-            transactionRepository.delete(transactionDto.toEntity());
+            transactionRepository.delete(transactionDTO.toEntity());
             transaction.commit();
             session.close();
             return true;
@@ -101,15 +99,16 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<TransactionDto> getAllTransactions() {
+    public List<TransactionDTO> getAllTransactions() {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         transactionRepository.setSession(session);
-        List<lk.ijse.hibernate.coursework.entity.Transaction> allTransactions = transactionRepository.getAll();
-        List<TransactionDto> transactionDtoList = new ArrayList<>();
-        for (lk.ijse.hibernate.coursework.entity.Transaction transaction : allTransactions) {
-            transactionDtoList.add(transaction.toDto()); // We convert the Entity back to a dto type before return to the controller
+        List<lk.ijse.hibernate.coursework.entity.Transaction> allTransactions= transactionRepository.getAll();
+        List<TransactionDTO> transactionDTOList = new ArrayList<>();
+        for (lk.ijse.hibernate.coursework.entity.Transaction transaction: allTransactions) {
+            transactionDTOList.add(transaction.toDTO());
         }
-        return transactionDtoList;
+        return transactionDTOList;
     }
+
 }

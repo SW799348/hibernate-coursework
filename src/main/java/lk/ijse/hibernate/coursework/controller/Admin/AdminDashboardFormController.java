@@ -8,13 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import lk.ijse.hibernate.coursework.navigation.Navigation;
 import lk.ijse.hibernate.coursework.navigation.Routes;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 public class AdminDashboardFormController {
 
@@ -138,7 +136,7 @@ public class AdminDashboardFormController {
         btnSignout.setOnMouseClicked(mouseEvent -> {
             Parent rootNode = null;
             try {
-                rootNode = FXMLLoader.load(this.getClass().getResource("/view/Admin/adminLoginForm.fxml"));
+                rootNode = FXMLLoader.load(this.getClass().getResource("/view/adminLoginForm.fxml"));
                 Scene scene = new Scene(rootNode);
 
                 mainAnchorPane.getChildren().clear();

@@ -1,11 +1,8 @@
 package lk.ijse.hibernate.coursework;
 
-import lk.ijse.hibernate.coursework.dto.AdminDto;
-import lk.ijse.hibernate.coursework.dto.UserDto;
+import lk.ijse.hibernate.coursework.dto.AdminDTO;
 import lk.ijse.hibernate.coursework.service.impl.AdminServiceImpl;
 import lk.ijse.hibernate.coursework.service.inter.AdminService;
-import lk.ijse.hibernate.coursework.util.SessionFactoryConfig;
-import org.hibernate.Session;
 
 public class AppInitializerWrapper {
     public static void main(String[] args) {
@@ -13,12 +10,12 @@ public class AppInitializerWrapper {
 
 //        AdminService admin = AdminServiceImpl.getInstance();
 //
-////        AdminDto adminDto = new AdminDto();
-////        adminDto.setUsername("samadhi");
-////        adminDto.setPassword("1234");
-////
-////        long id = admin.saveAdmin(adminDto);
-////        System.out.println(id);
+//        AdminDto adminDto = new AdminDTO();
+//        adminDto.setUsername("samadhi");
+//        adminDto.setPassword("1234");
+//
+//        long id = admin.saveAdmin(adminDto);
+//        System.out.println(id);
 //
 //        AdminDto adminDto = new AdminDto();
 //

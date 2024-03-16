@@ -16,41 +16,45 @@ public class UserRepositoryImpl implements UserRepository {
     private UserRepositoryImpl(){}
 
     public static UserRepositoryImpl getInstance(){
-        return null==userRepositoryImpl?userRepositoryImpl=new UserRepositoryImpl():userRepositoryImpl;
+        return null==userRepositoryImpl
+                ?userRepositoryImpl=new UserRepositoryImpl()
+                :userRepositoryImpl;
     }
     @Override
-    public Long save(User user) {
-        return (Long) session.save(user);
+    public void setSession(Session session) {
+        this.session = session;
     }
-
     @Override
-    public void update(User user) {
-      session.update(user);
-    }
-
-    @Override
-    public User get(Long id) {
-        return session.get(User.class,id);
+    public Long save(User object) {
+        return (Long) session.save(object);
     }
 
     @Override
-    public void delete(User user) {
-      session.delete(user);
+    public void update(User object) {
+        session.update(object);
     }
 
     @Override
-    public List<User> getAll() {
-        String sqlQuery="FROM User";
+    public User get(Long aLong) {
+        return session.get(User.class, aLong);
+    }
+
+    @Override
+    public void delete(User object) {
+        session.delete(object);
+
+    }
+
+    @Override
+    public List<User> getAll(){
+        String sqlQuery = "FROM User ";
         Query query = session.createQuery(sqlQuery);
         List list = query.list();
+
         session.close();
         return list;
     }
 
-    @Override
-    public void setSession(Session session) {
-           this.session=session;
-    }
 
 
 

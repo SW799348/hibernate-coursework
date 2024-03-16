@@ -1,19 +1,16 @@
 package lk.ijse.hibernate.coursework.entity;
 
-import lk.ijse.hibernate.coursework.dto.BookDto;
-import lk.ijse.hibernate.coursework.dto.TransactionDto;
+import lk.ijse.hibernate.coursework.dto.BookDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Data
 @Entity
 @Table(name = "books")
 
@@ -21,41 +18,43 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookID;
+    private Long id;
 
     private String title;
     private String author;
-    private String genre;
-    private boolean availabilityStatus;
-    private int qty;
+    private String gener;
 
+    private int qty;
 
 
     @ManyToOne
     private Admin admin;
 
     @ManyToOne
-    private Branch branch;
+    private LibraryBranch libraryBranch;
 
     @OneToMany(mappedBy = "book")
     private List<Transaction> transactions;
 
-
-    public BookDto toDto(){
-        BookDto bookDto = new BookDto();
-        bookDto.setBookID(this.bookID);
-        bookDto.setTitle(this.title);
-        bookDto.setAuthor(this.author);
-        bookDto.setGenre(this.genre);
-        bookDto.setAvailabilityStatus(this.availabilityStatus);
-        bookDto.setQty(this.qty);
-//
-//        List<TransactionDto> transactionDtos=new ArrayList<>();
-//        for(Transaction transaction : this.transactions){
-//            transactionDtos.add(transaction.toDto());
+    public BookDTO toDTO() {
+        BookDTO bookDTO = new BookDTO();
+        bookDTO.setId(this.id);
+        bookDTO.setTitle(this.title);
+        bookDTO.setAuthor(this.author);
+        bookDTO.setGener(this.gener);
+        bookDTO.setQty(this.qty);
+//        if (this.admin!=null) {
+//            bookDTO.setAdmin(this.admin.toDTO());
 //        }
-//        bookDto.setTransactionList(transactionDtos);
-
-        return bookDto;
+//        if (this.transactions!=null) {
+//            bookDTO.setLibraryBranch(this.libraryBranch.toDTO());
+//            List<TransactionDTO> transactionDTOS = new ArrayList<>();
+//            for (Transaction transaction : transactions) {
+//                transactionDTOS.add(transaction.toDTO());
+//            }
+//            bookDTO.setTransactions(transactionDTOS);
+//        }
+        return bookDTO;
     }
+
 }

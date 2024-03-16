@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="496.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hibernate.coursework.controller.Admin.BookManageFormController">
+   <children>
+      <Text fill="#4a5d98" layoutX="46.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Manage">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtTittle" layoutX="65.0" layoutY="88.0" prefHeight="25.0" prefWidth="182.0" promptText="Tittle" />
+      <TextField fx:id="txtAuthor" layoutX="282.0" layoutY="90.0" prefHeight="25.0" prefWidth="182.0" promptText="Author" />
+      <ComboBox fx:id="cmbGenre" layoutX="493.0" layoutY="90.0" onAction="#cmbGenreOnAction" prefHeight="25.0" prefWidth="182.0" promptText="Genre" style="-fx-background-color: #e6e3dc;" />
+      <JFXButton layoutX="438.0" layoutY="184.0" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #4a5d98;" text="save" textFill="WHITE" />
+      <JFXButton layoutX="523.0" layoutY="184.0" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #4a5d98;" text="update" textFill="WHITE" />
+      <JFXButton layoutX="608.0" layoutY="184.0" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #4a5d98;" text="delete" textFill="WHITE" />
+      <TableView fx:id="tblBookManage" layoutX="65.0" layoutY="239.0" prefHeight="221.0" prefWidth="611.0">
+        <columns>
+          <TableColumn fx:id="colBookID" prefWidth="84.66669464111328" text="Book ID" />
+          <TableColumn fx:id="colTittle" prefWidth="101.99996948242188" text="Tittle" />
+            <TableColumn fx:id="colAuthor" prefWidth="97.99998474121094" text="Author" />
+            <TableColumn fx:id="colGenre" prefWidth="92.66668701171875" text="Genre" />
+            <TableColumn fx:id="colBranch" prefWidth="123.33340454101562" text="Branch" />
+            <TableColumn fx:id="colQty" prefWidth="113.33331298828125" text="Qty" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtBranch" layoutX="65.0" layoutY="128.0" prefHeight="25.0" prefWidth="182.0" promptText="Branch" />
+      <JFXButton layoutX="481.0" layoutY="29.0" onAction="#btnSearchOnAction" prefHeight="31.0" prefWidth="67.0" style="-fx-background-color: #4a5d98;" text="search" textFill="WHITE" />
+      <TextField fx:id="txtSearch" layoutX="548.0" layoutY="29.0" prefHeight="31.0" prefWidth="135.0" promptText="search book here" />
+      <TextField fx:id="txtQty" layoutX="281.0" layoutY="128.0" prefHeight="25.0" prefWidth="182.0" promptText="Qty" />
+   </children>
+</AnchorPane>

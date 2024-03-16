@@ -13,5 +13,5 @@ public interface CrudRepository<T,ID> extends SuperRepository {
 
     void delete(T object);
 
-    List<T> getAll();
+    List<T>getAll();
 }

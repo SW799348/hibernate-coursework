@@ -17,15 +17,25 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Text>
-      <TableView fx:id="tblSearchBooks" layoutX="40.0" layoutY="143.0" prefHeight="298.0" prefWidth="666.0">
+      <TableView fx:id="tblSearchBooks" layoutX="40.0" layoutY="219.0" prefHeight="237.0" prefWidth="666.0">
         <columns>
           <TableColumn fx:id="colBookID" prefWidth="95.33333969116211" text="Book ID" />
           <TableColumn fx:id="colTittle" prefWidth="93.33334350585938" text="Tittle" />
-            <TableColumn fx:id="colAuthor" prefWidth="105.33335876464844" text="Author" />
-            <TableColumn fx:id="colGenre" prefWidth="118.0" text="Genre" />
+            <TableColumn fx:id="colAuthor" prefWidth="96.66664123535156" text="Author" />
+            <TableColumn fx:id="colGenre" prefWidth="127.3333740234375" text="Genre" />
             <TableColumn fx:id="colStatus" prefWidth="122.66665649414062" text="Status" />
             <TableColumn fx:id="colBranch" prefWidth="134.0" text="Branch" />
         </columns>
       </TableView>
+      <TextField fx:id="txtTittle" layoutX="152.0" layoutY="100.0" prefHeight="25.0" prefWidth="182.0" promptText="Tittle" />
+      <TextField fx:id="txtAuthor" layoutX="273.0" layoutY="176.0" prefHeight="25.0" prefWidth="182.0" promptText="Author" />
+      <TextField fx:id="txtBranch" layoutX="152.0" layoutY="138.0" prefHeight="25.0" prefWidth="182.0" promptText="Branch" />
+      <TextField fx:id="txtQty" layoutX="376.0" layoutY="138.0" prefHeight="25.0" prefWidth="182.0" promptText="Qty" />
+      <TextField fx:id="txtGenre" layoutX="376.0" layoutY="100.0" prefHeight="25.0" prefWidth="182.0" promptText="Genre" />
+      <JFXButton layoutX="638.0" layoutY="173.0" onAction="#btnBorrowOnAction" prefHeight="31.0" prefWidth="67.0" style="-fx-background-color: #4a5d98;" text="borrow" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

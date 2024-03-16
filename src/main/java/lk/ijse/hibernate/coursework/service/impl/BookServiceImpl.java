@@ -1,7 +1,7 @@
 package lk.ijse.hibernate.coursework.service.impl;
 
 
-import lk.ijse.hibernate.coursework.dto.BookDto;
+import lk.ijse.hibernate.coursework.dto.BookDTO;
 import lk.ijse.hibernate.coursework.entity.Book;
 import lk.ijse.hibernate.coursework.repository.impl.BookRepositoryImpl;
 import lk.ijse.hibernate.coursework.repository.inter.BookRepository;
@@ -15,30 +15,26 @@ import java.util.List;
 
 public class BookServiceImpl implements BookService {
 
-    private static BookService bookService;
-
     private Session session;
-
+    private static BookService bookService;
     private final BookRepository bookRepository;
 
     private BookServiceImpl(){
-        bookRepository= BookRepositoryImpl.getInstance();
+        bookRepository=BookRepositoryImpl.getInstance();
     }
-
-    public static BookService getInstance() {
-        return null == bookService
-                ? bookService = new BookServiceImpl()
-                : bookService;
+    public static BookService getInstance(){
+        return (null==bookService)
+                ?bookService=new BookServiceImpl()
+                :bookService;
     }
-
     @Override
-    public Long saveBook(BookDto bookDto) {
+    public Long saveBook(BookDTO bookDTO) {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         Transaction transaction = session.beginTransaction();
         try {
             bookRepository.setSession(session);
-            Long id = bookRepository.save(bookDto.toEntity()); // We pass it to the repository by converting it to an entity
+            Long id = bookRepository.save(bookDTO.toEntity());
             transaction.commit();
             session.close();
             return id;
@@ -51,14 +47,14 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDto getBook(long id) {
+    public BookDTO getBook(long id) {
         try {
             session = SessionFactoryConfig.getInstance()
                     .getSession();
             bookRepository.setSession(session);
             Book book = bookRepository.get(id);
             session.close();
-            return book.toDto(); // We convert the Entity back to a dto type before return to the controller
+            return book.toDTO();
         } catch (Exception ex) {
             ex.printStackTrace();
             throw ex;
@@ -66,13 +62,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean updateBook(BookDto bookDto) {
-        session = SessionFactoryConfig.getInstance()
-                .getSession();
+    public boolean updateBook(BookDTO bookDTO) {
+        session = SessionFactoryConfig.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         try {
             bookRepository.setSession(session);
-            bookRepository.update(bookDto.toEntity()); // We pass it to the repository by converting it to an entity
+            bookRepository.update(bookDTO.toEntity());
             transaction.commit();
             session.close();
             return true;
@@ -85,13 +80,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public boolean deleteBook(BookDto book) {
+    public boolean deleteBook(BookDTO bookDTO) {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         Transaction transaction = session.beginTransaction();
         try {
             bookRepository.setSession(session);
-            bookRepository.delete(book.toEntity()); // We pass it to the repository by converting it to an entity
+            bookRepository.delete(bookDTO.toEntity());
             transaction.commit();
             session.close();
             return true;
@@ -104,15 +99,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> getAllBooks() {
+    public List<BookDTO> getAllBooks() {
         session = SessionFactoryConfig.getInstance()
                 .getSession();
         bookRepository.setSession(session);
-        List<Book> allBooks = bookRepository.getAll(); // Here we're getting Entity type object result
-        List<BookDto> bookDtoList = new ArrayList<>();
+        List<Book> allBooks= bookRepository.getAll();
+        List<BookDTO> bookDTOList = new ArrayList<>();
         for (Book book : allBooks) {
-            bookDtoList.add(book.toDto()); // We convert the Entity back to a dto type before return to the controller
+            bookDTOList.add(book.toDTO());
         }
-        return bookDtoList;
+        return bookDTOList;
     }
 }
