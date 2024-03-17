@@ -34,6 +34,8 @@ public class UserLoginFormController {
 
     private  UserService userService;
 
+    public static Long userId;
+
 
 
     public void initialize(){
@@ -46,6 +48,7 @@ public class UserLoginFormController {
         List<UserDTO> allUsers = userService.getAllUsers();
         for (UserDTO userDTO : allUsers) {
             if (userDTO.getUsername().equals(txtUsername.getText()) && userDTO.getPassword().equals(txtPassword.getText())) {
+                userId = userDTO.getId();
                 new Alert(Alert.AlertType.CONFIRMATION, "login successfully!").showAndWait();
                 Navigation.navigate(Routes.HOMEUSER, loginAnchorPane);
 

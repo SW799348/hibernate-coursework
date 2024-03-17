@@ -22,12 +22,11 @@
       <JFXButton layoutX="227.0" layoutY="177.0" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #4a5d98;" text="delete" textFill="WHITE" />
       <JFXButton layoutX="481.0" layoutY="37.0" onAction="#btnSearchOnAction" prefHeight="31.0" prefWidth="67.0" style="-fx-background-color: #4a5d98;" text="search" textFill="WHITE" />
       <TextField fx:id="txtSearch" layoutX="548.0" layoutY="37.0" prefHeight="31.0" prefWidth="160.0" promptText="search book here" />
-      <TableView fx:id="tblBranch" layoutX="49.0" layoutY="248.0" prefHeight="200.0" prefWidth="648.0">
+      <TableView fx:id="tblBranch" layoutX="141.0" layoutY="248.0" prefHeight="200.0" prefWidth="512.0">
         <columns>
           <TableColumn fx:id="colBranchId" prefWidth="108.00002670288086" text="Branch Id" />
           <TableColumn fx:id="colBranchName" prefWidth="209.3332977294922" text="Branch Name" />
             <TableColumn fx:id="colLocation" prefWidth="190.66659545898438" text="Location" />
-            <TableColumn fx:id="colAdminId" prefWidth="139.3333740234375" text="Admin Id" />
         </columns>
       </TableView>
    </children>

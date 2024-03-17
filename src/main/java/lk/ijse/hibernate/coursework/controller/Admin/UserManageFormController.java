@@ -4,13 +4,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.hibernate.coursework.dto.AdminDTO;
+import lk.ijse.hibernate.coursework.dto.LibraryBranchDTO;
 import lk.ijse.hibernate.coursework.dto.UserDTO;
+import lk.ijse.hibernate.coursework.dto.tm.BranchTM;
+import lk.ijse.hibernate.coursework.dto.tm.UserTM;
 import lk.ijse.hibernate.coursework.service.impl.AdminServiceImpl;
 import lk.ijse.hibernate.coursework.service.impl.UserServiceImpl;
 import lk.ijse.hibernate.coursework.service.inter.AdminService;
 import lk.ijse.hibernate.coursework.service.inter.UserService;
+
+import java.util.List;
 
 public class UserManageFormController {
 
@@ -41,6 +48,9 @@ public class UserManageFormController {
     @FXML
     private TextField txtUserId;
 
+    @FXML
+    private TableView<UserTM> tblUser;
+
     private static UserService userService;
 
     private static AdminService adminService;
@@ -53,6 +63,37 @@ public class UserManageFormController {
         userService= UserServiceImpl.getInstance();
         adminService= AdminServiceImpl.getInstance();
         adminID=AdminLoginFormController.adminId;
+        setCellVAlueFactory();
+        loadAllUsers();
+    }
+
+    private void loadAllUsers() {
+        tblUser.getItems().clear();
+
+        try {
+            List<UserDTO> allUsers = userService.getAllUsers();
+            for (UserDTO userDTO : allUsers) {
+                tblUser.getItems().add(
+                        new UserTM(
+                                userDTO.getId(),
+                                userDTO.getUsername(),
+                                userDTO.getEmail()
+                        )
+                );
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
+
+
+    private void setCellVAlueFactory() {
+        colUserId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("username"));
+        colMail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+
     }
 
     @FXML

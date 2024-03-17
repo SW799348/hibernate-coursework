@@ -15,6 +15,7 @@ import lk.ijse.hibernate.coursework.service.inter.AdminService;
 import lk.ijse.hibernate.coursework.service.inter.BookService;
 import lk.ijse.hibernate.coursework.service.inter.LibraryBranchService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class BookManageFormController {
@@ -41,7 +42,7 @@ public class BookManageFormController {
     private TableColumn<?, ?> colTittle;
 
     @FXML
-    private TableView<?> tblBookManage;
+    private TableView<BookTM> tblBookManage;
 
     @FXML
     private TextField txtAuthor;
@@ -80,37 +81,34 @@ public class BookManageFormController {
     }
 
     private void loadAllBooks() {
-//        tblBookManage.getItems().clear();
-//
-//        try {
-//            List<BookDTO> allBooks = bookService.getAllBooks();
-//            for (BookDTO bookDto: allBooks) {
-//                LibraryBranchDTO libraryBranch = bookDto.getLibraryBranch();
-//                tblBookManage.getItems().add(
-//                      new BookTM(
-//                              bookDto.getId(),
-//                              bookDto.getTitle(),
-//                              bookDto.getAuthor(),
-//                              bookDto.getGener(),
-//                              bookDto.getQty(),
-//                              bookDto.getAdmin(),
-//
-//
-//
-//
-//                      )
-//              );
-//            }
-//        }
+        tblBookManage.getItems().clear();
+
+        try {
+            List<BookDTO> allBooks = bookService.getAllBooks();
+            for (BookDTO bookDto: allBooks) {
+                tblBookManage.getItems().add(
+                      new BookTM(
+                              bookDto.getId(),
+                              bookDto.getTitle(),
+                              bookDto.getAuthor(),
+                              bookDto.getGener(),
+                              bookDto.getQty(),
+                              bookDto.getAdmin()
+
+                      )
+              );
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
+        }
     }
 
     private void setCellVAlueFactory() {
         colBookID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colTittle.setCellValueFactory(new PropertyValueFactory<>("tittle"));
+        colTittle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         colGenre.setCellValueFactory(new PropertyValueFactory<>("gener"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
-        colBranch.setCellValueFactory(new PropertyValueFactory<>("branch"));
 
     }
 
@@ -187,27 +185,20 @@ public class BookManageFormController {
     void btnSearchOnAction(ActionEvent event) {
         Long bookId = Long.valueOf(txtSearch.getText());
 
-
-
-        if(bookId.equals(existingBook)){
             existingBook = bookService.getBook(bookId);
             txtTittle.setText(existingBook.getTitle());
             txtAuthor.setText(existingBook.getAuthor());
             cmbGenre.setValue(existingBook.getGener());
             txtQty.setText(String.valueOf(existingBook.getQty()));
-        }else{
-            new Alert(Alert.AlertType.ERROR,"book can not found!").show();
-        }
-
-
-
-
-        // Fetch the branch name from the existingBook's libraryBranch object and set it to the text field
-        if (existingBook.getLibraryBranch() != null) {
             txtBranch.setText(existingBook.getLibraryBranch().getLocation());
-        } else {
-            txtBranch.setText(""); // Handle the case where the branch is null
-        }
+
+
+            // Fetch the branch name from the existingBook's libraryBranch object and set it to the text field
+//        if (existingBook.getLibraryBranch() != null) {
+//            txtBranch.setText(existingBook.getLibraryBranch().getLocation());
+//        } else {
+//            txtBranch.setText(""); // Handle the case where the branch is null
+//        }
 
 
     }

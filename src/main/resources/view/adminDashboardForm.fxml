@@ -45,7 +45,7 @@
       </Pane>
       <AnchorPane fx:id="subAnchorPane" layoutX="165.0">
          <children>
-            <Pane prefHeight="496.0" prefWidth="746.0" style="-fx-background-color: yellow;">
+            <Pane prefHeight="496.0" prefWidth="746.0">
                <children>
                   <Text fill="#090909" layoutX="39.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello Admin" wrappingWidth="320.13673400878906">
                      <font>

@@ -6,12 +6,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.hibernate.coursework.dto.AdminDTO;
+import lk.ijse.hibernate.coursework.dto.BookDTO;
 import lk.ijse.hibernate.coursework.dto.LibraryBranchDTO;
+import lk.ijse.hibernate.coursework.dto.tm.BookTM;
+import lk.ijse.hibernate.coursework.dto.tm.BranchTM;
 import lk.ijse.hibernate.coursework.service.impl.AdminServiceImpl;
 import lk.ijse.hibernate.coursework.service.impl.LibraryBranchServiceImpl;
 import lk.ijse.hibernate.coursework.service.inter.AdminService;
 import lk.ijse.hibernate.coursework.service.inter.LibraryBranchService;
+
+import java.util.List;
 
 public class BranchManageFormController {
 
@@ -28,7 +34,7 @@ public class BranchManageFormController {
     private TableColumn<?, ?> colLocation;
 
     @FXML
-    private TableView<?> tblBranch;
+    private TableView<BranchTM> tblBranch;
 
     @FXML
     private TextField txtBranchName;
@@ -51,6 +57,37 @@ public class BranchManageFormController {
         libraryBranchService= LibraryBranchServiceImpl.getInstance();
         adminService= AdminServiceImpl.getInstance();
         adminID=AdminLoginFormController.adminId;
+        setCellVAlueFactory();
+        loadAllBranches();
+    }
+
+    private void loadAllBranches() {
+        tblBranch.getItems().clear();
+
+        try {
+            List<LibraryBranchDTO> allBranches = libraryBranchService.getAllLibraryBranches();
+            for (LibraryBranchDTO branchDTO : allBranches) {
+                tblBranch.getItems().add(
+                        new BranchTM(
+                                branchDTO.getId(),
+                                branchDTO.getName(),
+                                branchDTO.getLocation(),
+                                branchDTO.getAdmin() // Set admin ID
+                        )
+                );
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
+    private void setCellVAlueFactory() {
+        colBranchId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colBranchName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
+        colAdminId.setCellValueFactory(new PropertyValueFactory<>("adminId"));
+
+
     }
 
     @FXML

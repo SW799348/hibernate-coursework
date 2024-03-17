@@ -24,7 +24,10 @@ public class LibraryBranchDTO implements Serializable {
 
     @ManyToOne
     private AdminDTO admin;
+
     private List<BookDTO> books;
+
+
 
 
     public LibraryBranch toEntity() {

@@ -46,7 +46,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnHome" layoutX="23.0" layoutY="132.0" prefHeight="37.0" prefWidth="116.0" style="-fx-background-radius: 5;" text="Home">
+            <JFXButton fx:id="btnHome" layoutX="23.0" layoutY="132.0" prefHeight="37.0" prefWidth="116.0" style="-fx-background-radius: 5;" text="Search Books">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

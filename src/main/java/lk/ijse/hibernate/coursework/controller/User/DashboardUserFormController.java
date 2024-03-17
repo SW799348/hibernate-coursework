@@ -52,11 +52,13 @@ public class DashboardUserFormController {
 
         btnHome.setOnAction(actionEvent -> {
             try {
-                Navigation.navigate(Routes.HOMEUSER,mainAnchorPane);
+                Navigation.navigate(Routes.SEARCHBOOKS,subAnchorPane);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
+
+
 
         btnMyBooks.setOnAction(actionEvent -> {
             try {
